@@ -2,5 +2,20 @@
 layout: '~/layouts/MarkdownLayout.astro'
 title: About Me
 ---
+**Hello! My name is Kiel (Kyle)**
 
-The laughing kookaburra (Dacelo novaeguineae) is a bird in the kingfisher subfamily Halcyoninae. It is a large robust kingfisher with a whitish head and a brown eye-stripe. The upperparts are mostly dark brown but there is a mottled light-blue patch on the wing coverts. The underparts are cream-white and the tail is barred with rufous and black. The plumage of the male and female birds is similar. The territorial call is a distinctive laugh that is often delivered by several birds at the same time, and is widely used as a stock sound effect in situations that involve a jungle setting.
+I'm a software engineer with a background in electrical engineering. Previously graduated from UW-Milwaukee with a BS of Electrical Engineering. Currently I'm attending ASU for a MS of Software Engineering.
+
+In the past, I've laid out PCBs and supported hardware designs in various ECAD software including Altium and Eagle CAD. Most recently, I've programmed hardware via firmware updates and software development via Qt (C++) and .Net (C#) frameworks.
+
+My career interests are:
+* audio programming/hardware
+* video game development
+* high frequency trading
+* embedded systems
+
+My technical interest are:
+* dsp
+* multithreading
+* build systems
+* linux
