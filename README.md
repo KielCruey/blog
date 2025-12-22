@@ -7,3 +7,9 @@ To see the results go to http://localhost:4321/
 
 # Blog Features
 Check out the [Showing Off Blog Features](https://multiterm.stelclementine.com/posts/showing-off-blog-features) post.
+
+# Creating a GraphViz .png Output
+Use the following CLI command:
+```
+dot -Tpng <name-of-file>.gv -o <name-of-file>.png
+```

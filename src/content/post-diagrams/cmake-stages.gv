@@ -1,0 +1,15 @@
+digraph cmakeStages {
+    // Set  graph direction to left to right
+    rankdir="LR";
+
+    // sets all nodes to boxes
+    node [shape=box]
+
+    // labels
+    A [label="Configure"];
+    B [label="Generate"];
+    C [label="Build", fontcolor="red"];
+
+    A -> B;
+    B -> C;
+}

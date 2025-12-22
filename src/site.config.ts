@@ -7,7 +7,7 @@ const config: SiteConfig = {
   title: 'crueyKernel->dev',
   // The description of your site, used for SEO and RSS feed.
   description:
-    'all things software, hardware, and firmware',
+    'blog about all things software, hardware, and firmware',
   // The author of the site, used in the footer, SEO, and RSS feed.
   author: 'Kiel Cruey',
   // Keywords for SEO, used in the meta tags.
