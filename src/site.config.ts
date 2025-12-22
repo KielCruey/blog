@@ -4,14 +4,14 @@ const config: SiteConfig = {
   // Absolute URL to the root of your published site, used for generating links and sitemaps.
   site: 'https://kcruey.com',
   // The name of your site, used in the title and for SEO.
-  title: 'Kiel Cruey\'s Blog',
+  title: 'crueyKernel->dev',
   // The description of your site, used for SEO and RSS feed.
   description:
     'all things software, hardware, and firmware',
   // The author of the site, used in the footer, SEO, and RSS feed.
   author: 'Kiel Cruey',
   // Keywords for SEO, used in the meta tags.
-  tags: ['software', 'hardware', 'firmware'],
+  tags: ['software', 'hardware', 'firmware', 'kernel', 'kiel', 'cruey', 'kcruey'],
   // Path to the image used for generating social media previews.
   // Needs to be a square JPEG file due to limitations of the social card generator.
   // Try https://squoosh.app/ to easily convert images to JPEG.
