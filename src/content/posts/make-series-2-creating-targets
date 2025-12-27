@@ -1,0 +1,44 @@
+---
+title: 'Creating and Linking Targets'
+published: 2025-12-27
+draft: false
+description: 'CMake has the ability to create targets like library. This article shows how to link targets to an executable.'
+series: 'CMake Tutorial'
+tags: ['cmake']
+---
+
+## Creating Targets
+Some commands making targets are:
+* add_executable 
+* add_library
+* add_subdirectory
+
+Some commands adding translation units to targets:
+* target_sources
+
+Some commands that link libraries to targets:
+* target_linked_libraries
+
+:::note
+We're ready to combine our library with our executable, for this we must introduce a new command, target_link_libraries(). The name of this command can be somewhat misleading, as it does a great deal more than just invoke linkers. It describes relationships between targets generally.
+:::
+
+## BS
+the target_sources() command for associating input files with their respective output artifacts, and the target_link_libraries() command for associating output artifacts with one another. FROM https://cmake.org/cmake/help/latest/guide/tutorial/Getting%20Started%20with%20CMake.html
+
+The next command we need is add_executable(). This command creates a target. In CMake lingo, a target is a name the developer gives to a collection of properties.
+
+Some examples of properties a target might want to keep track of are:
+* The artifact kind (executable, library, header collection, etc)
+* Source files
+* Include directories
+* Output name of an executable or library
+* Dependencies
+* Compiler and linker flags
+
+Scope keywords have a simple intuition associated with them, when considering a command from the point of view of the target it is being applied to: PRIVATE is for me, INTERFACE is for others, PUBLIC is for all of us.
+
+
+:::note
+cmake -P is called "script mode", it informs CMake this file is not intended to have a project() command. We're not building any software, instead using CMake only as a command interpreter.
+:::
