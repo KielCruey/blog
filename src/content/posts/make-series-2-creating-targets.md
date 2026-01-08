@@ -46,7 +46,7 @@ When reading the example commands, notice the punctuation and syntax of the comm
 
 Lets take a look at specifically to the three basic CMake command's documentation.
 
-#### cmake_minimum_required()
+### cmake_minimum_required()
 The example commands from the cmake_minimum_required [documentation](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html): 
 ```shell title="cmake_minimum_required() Command Example"
 $ cmake_minimum_required(VERSION <min>[...<policy_max>] [FATAL_ERROR])
@@ -96,7 +96,7 @@ Just like that, CMake will yell at you as expected!
 
 Change back the version number to 4.2 for the error to cease.
 
-#### project()
+### project()
 The example commands from the project [documentation](https://cmake.org/cmake/help/latest/command/project.html#command:project): 
 ```shell title="project() Command Examples"
 # option #1
@@ -123,7 +123,7 @@ project(Tutorial CXX)
 add_executable(hello hello-world.cpp)
 ```
 
-#### add_executable()
+### add_executable()
 The example commands from the add_executable [documentation](https://cmake.org/cmake/help/latest/command/add_executable.html#command:add_executable): 
 
 ```shell title="add_executable() Command Examples"
@@ -197,7 +197,20 @@ To help with property propagation understanding, following table assist what key
 
 You can this of it as -- PRIVATE is for me, INTERFACE is for others, PUBLIC is for all of us.
 
-### Linking Targets to Each Other
+## Setting/Getting Properties from Targets
+When you link targets together, their properties are consumed, shared, or given to between the visibility relationship they have. Some properties are specific to that target (for example executable or library) and depend on the target type, however we are allowed to make our own personal properties as well.
+
+Target specific properties:
+* [get_target_property](https://cmake.org/cmake/help/latest/command/get_target_property.html)
+* [set_target_property](https://cmake.org/cmake/help/latest/command/set_target_properties.html)
+
+Costume properties:
+* [get_property](https://cmake.org/cmake/help/latest/command/set_property.html)
+* [set_property](https://cmake.org/cmake/help/latest/command/get_property.html)
+
+Just hinting at this topic because we will look into it later. Take notice properties can be read, write, and create your own target properties.
+
+## Linking Targets to Each Other
 Now we have an source filled artifact floating in CMake space, we now need to link that library to something -- in our case -- an executable to consume. This is when target_link_libraries command comes to the rescue. 
 
 * [target_link_libraries](https://cmake.org/cmake/help/latest/command/target_link_libraries.html) -- connects and links specific target together and their relationship is related to the scope keyword used
@@ -212,22 +225,56 @@ target_link_library(myProgram PRIVATE myLib)
 
 We can see the library we created is now being consumed by the executables, so any library functions in myLib can be used by myProgram. 
 
+## Using CMake to Build a Specific Target
+When you type in "cmake --build build", CMake builds everything in the ***CMakeLists.txt*** script. However, lets say we have a complicated target, and you might what to debug just that target? Luckily, CMake allows to create a specific target in you project.
+
+For the building stage, add the "--target" flag/option, it will look something like this:
+```shell title="Building a Specific Targets Command"
+$ cmake --build build --target <target-name>
+```
+:::note
+Name as many targets as you want in after target flag/option, and CMake will build them.
+:::
+
 ## Visualization of Dependencies
-Now suppose we are given a project with a lot of targets created. There's a giant web of dependencies with targets. It might not be obvious or clear how everything links together, however CMake has a tool called Graphviz to help with documentation.
+Now suppose we are given a project with a lot of targets created. There's a giant web of dependencies between the executables and the targets. It might not be obvious or clear how everything fits together, however CMake contains a tool called Graphviz to help with documentation.
+For creating a dependency graph for better documentation is easier then ever. 
 
-For creating a dependency graph for better documentation is easier then ever. I would suggest generate the documentation inside the build directory, so you don't mixup source code and build artifacts. 
+I would suggest generate the dependency documentation inside the build directory, so you don't mixup source code and build artifacts. This idea is called [out-of-source](https://johnfarrier.com/in-source-vs-out-of-source-builds) build.
 
-In order to use the graphviz feature, we have to create a special configuration file called "CMakeGraphVizOptions.cmake". Inside the fill add the following:
+### Graphviz Setup -- Process Script Mode
+In order to use the graphviz feature, we have to create a special configuration file called "CMakeGraphVizOptions.cmake".
+
+![Script-File-Structure](../post-pictures/cmake-series/2-creating-targets/script-file-structure.PNG)
+
+Inside the fill add the following:
 ```cmake title="CMakeGraphVizOptions.cmake"
+message("")
+message("GRAPHVIZ option(s) confirmed")
+message("")
+
 set(GRAPHVIZ_CUSTOM_TARGET TRUE)
 ```
 
-Now lets start generating, use the commands to product a Graphviz dependency graph:
+As we can see, this file isn't anything similar to other CMake scripts we've created before. First off, it doesn't have a .txt file extension but a .cmake. This tells CMake it's a configuration file, and it doesn't have to follow general CMake in rules like including a "project()" command inside the file. However, we can see it's named a particular way, and it must be called "CMakeGraphVizOptions.cmake". CMake looks at the Graphviz dependency and check how Graphviz files should be configured.
+
+Anytime CMake see a "--graphviz" flag/option, CMake will look into the source code and run the "CMakeGraphVizOptions.cmake" script automatically. 
+
+### Creating the Dependency Graph
+Now lets start generating the library dependency graph, use the commands to product a Graphviz dependency graph:
 
 ```shell title="Creating Dependency Graph"
 $ cd build
-$ cmake --graphviz=<name-of-file>.dot ..
+# creating a .dot file
+$ cmake --graphviz=project_dependencies.dot .. 
+# producing a .png from the .dot file
+$ dot -Tpng project_dependencies.dot -o project_dependencies.png 
 ```
+
+![Process Script Mode](../post-pictures/cmake-series/2-creating-targets/process-script-mode.PNG)
+
+Example of dependency graph for example program.
+![Dependency Graph](../post-diagrams/cmake-series/2-creating-targets/project_dependencies.png)
 
 ## Resources
 [Modern CMake for C++](https://www.packtpub.com/en-us/product/modern-cmake-for-c-9781805121800?pv2=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJjIjoiVVNEIiwiZXhwIjoxNzY2NTk3OTU0LCJtIjoiMTM5OTcyMjEiLCJvIjoiVVMtOTc4MTgwNTEyMTgwMC1QQVBFUkJBQ0siLCJwIjo0My45OTAwMDAwMDAwMDAwMDJ9.2t3-UUfK1gsdqTYc1dTwATUHrd3XnAzC0E0Oz7hpqqk_1ixvphXaktbPvBd0k_1S0ZFRWUq6SVi-UVUgtodEEg&utm_source=google&utm_medium=cpc&utm_campaign=23082907872&puci=CjwKCAiAu67KBhAkEiwAY0jAlQFYlbzeQ2Rojn31YAnKRNnDvEdq4en7qyc9zsA6cb6cK18WA-WtYxoCx3gQAvD_BwE&gad_source=1&gad_campaignid=23088837035&gbraid=0AAAAAqt_OJ2zJY6kfcp8FvvGFZXNtftPI&gclid=CjwKCAiAu67KBhAkEiwAY0jAlQFYlbzeQ2Rojn31YAnKRNnDvEdq4en7qyc9zsA6cb6cK18WA-WtYxoCx3gQAvD_BwE) by Rafał Świdziński

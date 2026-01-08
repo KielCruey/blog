@@ -66,7 +66,7 @@ However if your project is getting complicated, it isn't uncommon to add supplem
 Remember, CMake is a build generator, which means it calls other native tools on your computer to create an executable. That's why we need to install dependencies from previous sections above. CMake must acknowledge the other tools on your system, or CMake will throw an error.
 
 Luckily, only three stages must occur before an output is produced. These stages are ***configuration***, ***generation***, and ***build*** stages.
-![CMake's Three Stages](../post-diagrams/cmake-stages.png)
+![CMake's Three Stages](../post-diagrams/cmake-series/1-setting-up-cmake/cmake-stages.png)
 
 CMake must pass these stages in order; however for the purpose development, you can combine the configuration and generation stages in one CLI command using [flags/options](https://cmake.org/cmake/help/latest/manual/cmake.1.html#options). In CMake, flags/options are signified by a hyphen "-" followed by a capital letter or a dash "--" followed by a word. Think of flags/options as adding more details to CMake to config, generate, and build projects.
 
@@ -105,7 +105,7 @@ Finally with everything in place, lets get configuring!
 
 ## Configuration Stage
 Lets examine the configuration stage!
-![CMake Configuration Stage](../post-diagrams/cmake-stages-red-config.png)
+![CMake Configuration Stage](../post-diagrams/cmake-series/1-setting-up-cmake/cmake-stages-red-config.png)
 
 During the Configuration stage, CMake reads the ***CMakeLists.txt*** and checks to see what dependencies, compilers, linkers, paths, and system information are known to CMake. Basically this stage names and sets what CMake should be working with, and sets the environment/cache variables for future actions.
 
@@ -130,7 +130,7 @@ Before the error was thrown, it seems like it was trying to build for "NMake Mak
 
 ## Generation Stage
 Lets examine the generation stage!
-![CMake Generation Stage](../post-diagrams/cmake-stages-red-generate.png)
+![CMake Generation Stage](../post-diagrams/cmake-series/1-setting-up-cmake/cmake-stages-red-generate.png)
 
 CMake has the ability to use different generation systems. To see all the possible generation types, execute the following command:
 ```shell title="Listing Out All Generators"
@@ -200,7 +200,7 @@ However there's pitfall with this, if you exit your CLI, the export variable (CM
 
 ## Building Stage
 Lets examine the build stage!
-![CMake Building Stage](../post-diagrams/cmake-stages-red-build.png)
+![CMake Building Stage](../post-diagrams/cmake-series/1-setting-up-cmake/cmake-stages-red-build.png)
 
 The build stage allows CMake to create build target artifacts, which include executables, libraries, and so much more. However in our case, we will only create a simple executable.
 
@@ -276,3 +276,5 @@ We also introduced the --verbose flag to your builds. Using the verbose flag, CM
 
 ## Resources
 [Modern CMake for C++](https://www.packtpub.com/en-us/product/modern-cmake-for-c-9781805121800?pv2=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJjIjoiVVNEIiwiZXhwIjoxNzY2NTk3OTU0LCJtIjoiMTM5OTcyMjEiLCJvIjoiVVMtOTc4MTgwNTEyMTgwMC1QQVBFUkJBQ0siLCJwIjo0My45OTAwMDAwMDAwMDAwMDJ9.2t3-UUfK1gsdqTYc1dTwATUHrd3XnAzC0E0Oz7hpqqk_1ixvphXaktbPvBd0k_1S0ZFRWUq6SVi-UVUgtodEEg&utm_source=google&utm_medium=cpc&utm_campaign=23082907872&puci=CjwKCAiAu67KBhAkEiwAY0jAlQFYlbzeQ2Rojn31YAnKRNnDvEdq4en7qyc9zsA6cb6cK18WA-WtYxoCx3gQAvD_BwE&gad_source=1&gad_campaignid=23088837035&gbraid=0AAAAAqt_OJ2zJY6kfcp8FvvGFZXNtftPI&gclid=CjwKCAiAu67KBhAkEiwAY0jAlQFYlbzeQ2Rojn31YAnKRNnDvEdq4en7qyc9zsA6cb6cK18WA-WtYxoCx3gQAvD_BwE) by Rafał Świdziński
+
+[CMake General Reference](https://cmake.org/cmake/help/latest/index.html)
