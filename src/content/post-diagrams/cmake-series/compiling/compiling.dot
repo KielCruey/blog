@@ -1,0 +1,21 @@
+digraph compiling {
+    subgraph g {
+        label="C++ Compiling Process"
+        labelloc = t; // Places the cluster label at the top
+        style = filled;
+        color = lightgrey;
+        node [shape=box, style="filled", fillcolor=white]
+        sc [label="Source Code"]
+        p [label="Preprocessor"]
+        c [label="Compiler"]
+        a [label="Assembler"]
+        l [label="Linker"]   
+        e [label="Executable"]
+
+        sc -> p [label=" .cpp"];
+        p -> c [label=" .i"];
+        c -> a [label=" .s"];
+        a -> l [label=" .o"];
+        l -> e [label=" ./<file-name>\n.exe\n.lib\n.a\n.so\n.dll"];
+    }
+}

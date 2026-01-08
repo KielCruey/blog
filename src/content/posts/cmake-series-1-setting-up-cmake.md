@@ -7,6 +7,10 @@ series: 'CMake Tutorial'
 tags: ['cmake', 'chocolatey', 'homebrew']
 ---
 
+:::important
+The tutorial series will reference CMake code located in this [repository](https://github.com/KielCruey/cmake-tutorial). Go into the directory with the same name as the article's title for all code in this article.
+:::
+
 # CMake Tutorial Series
 For this multipart series, we will look into [CMake](https://cmake.org/) development tool by [Kitware](https://www.kitware.com/). CMake is an open source build generator tool useful for any C/C++ developer who wants to control their native and cross-platform builds. CMake doesn't itself build executables but calls other tools to create them.
 
@@ -29,6 +33,7 @@ To follow along with this series, we need to add the follow dependencies on your
 * make (build tool)
 * gcc/g++ (C/C++ compilers)
 * tree (CLI tool that prints file structures)
+* git
 
 However depending on what OS (Windows or MacOS) you're on, different installation process will occur. Refer to your OS's directions below.
 
@@ -37,7 +42,7 @@ If you're on Windows, I would suggest downloading a package manager like [Chocol
 
 Once downloaded, add make (build tool), cmake (build, testings, and packaging tool), and gcc/g++ (compilers). Open up your favorite command line interface (CLI) and type the following:
 ```shell title="Chocolatey CLI Commands"
-$ choco install make cmake mingw tree -y
+$ choco install make cmake mingw tree git -y
 ```
 
 :::important 
@@ -49,7 +54,7 @@ If you're on MacOS, I would suggest installing [Homebrew](https://brew.sh/) as y
 
 Once downloaded, add make (build tool), cmake (build, testings, and packaging tool), and gcc/g++ (compilers). Open up your favorite command line interface (CLI) and type the following:
 ``` shell title="Homebrew CLI Commands"
-$ brew install make cmake gcc g++ tree -y
+$ brew install make cmake gcc g++ tree git -y
 ```
 
 ### Installing on Linux
@@ -66,7 +71,7 @@ However if your project is getting complicated, it isn't uncommon to add supplem
 Remember, CMake is a build generator, which means it calls other native tools on your computer to create an executable. That's why we need to install dependencies from previous sections above. CMake must acknowledge the other tools on your system, or CMake will throw an error.
 
 Luckily, only three stages must occur before an output is produced. These stages are ***configuration***, ***generation***, and ***build*** stages.
-![CMake's Three Stages](../post-diagrams/cmake-stages.png)
+![CMake's Three Stages](../post-diagrams/cmake-series/1-setting-up-cmake/cmake-stages.png 'CMake\'s Three Primary Process Stages') 
 
 CMake must pass these stages in order; however for the purpose development, you can combine the configuration and generation stages in one CLI command using [flags/options](https://cmake.org/cmake/help/latest/manual/cmake.1.html#options). In CMake, flags/options are signified by a hyphen "-" followed by a capital letter or a dash "--" followed by a word. Think of flags/options as adding more details to CMake to config, generate, and build projects.
 
@@ -76,7 +81,7 @@ Now it's time to start coding!
 Anywhere on your computer, add a directory called "cmake-tutorial" and inside this director, add "hello-world.cpp" and "CMakeLists.txt" files.
 
 "hello-world.cpp" is a small program that just print "Hello World" to the command line and CMakeLists.txt is the script that builds the program.
-```c++ title="hello-world.cpp"
+```c++ title="hello-world/hello-world.cpp"
 #include <cstdio>
 #include <cstdlib> // EXIT_SUCCESS
 
@@ -87,11 +92,9 @@ int main()
 }
 ```
 
-```c++ title="CMakeLists.txt"
+```cmake title="hello-world/CMakeLists.txt"
 cmake_minimum_required(VERSION 4.2)
-
 project(Tutorial)
-
 add_executable(hello hello-world.cpp)
 ```
 :::note
@@ -99,13 +102,13 @@ For CMakeLists.txt, these three commands -- cmake_minimum_required, project, and
 :::
 
 Once completed, your folder should look something like this: 
-![tutorial directory](../post-pictures/cmake-series/1-setting-up-cmake/setting-up-cmake-1.png)
+![tutorial directory](../post-pictures/cmake-series/1-setting-up-cmake/setting-up-cmake-1.png '\'hello-world\' File Structure')
 
 Finally with everything in place, lets get configuring!
 
 ## Configuration Stage
 Lets examine the configuration stage!
-![CMake Configuration Stage](../post-diagrams/cmake-stages-red-config.png)
+![CMake Configuration Stage](../post-diagrams/cmake-series/1-setting-up-cmake/cmake-stages-red-config.png 'CMake\'s Configure Stage')
 
 During the Configuration stage, CMake reads the ***CMakeLists.txt*** and checks to see what dependencies, compilers, linkers, paths, and system information are known to CMake. Basically this stage names and sets what CMake should be working with, and sets the environment/cache variables for future actions.
 
@@ -124,13 +127,13 @@ The -S flag tells CMake where the location of the source tree or source code wil
 
 Oops, it seems like something went wrong. 
 
-![generation error](../post-pictures/cmake-series/1-setting-up-cmake/config-error.png)
+![generation error](../post-pictures/cmake-series/1-setting-up-cmake/config-error.png 'Generation Error')
 
 Before the error was thrown, it seems like it was trying to build for "NMake Makefiles" on line 3. CMake is telling us that we're generating the build using wrong type. Previously, we had to download MinGW. CMake will be using that generator, but it's not. Now let's configure CMake for the "MinGW Makefiles" instead of "NMake Makefiles".
 
 ## Generation Stage
 Lets examine the generation stage!
-![CMake Generation Stage](../post-diagrams/cmake-stages-red-generate.png)
+![CMake Generation Stage](../post-diagrams/cmake-series/1-setting-up-cmake/cmake-stages-red-generate.png 'CMake\'s Generation Stage')
 
 CMake has the ability to use different generation systems. To see all the possible generation types, execute the following command:
 ```shell title="Listing Out All Generators"
@@ -156,13 +159,13 @@ Notice that -G flag/option from the command above. This tells CMake what type of
 
 Upon linking the generator flag/option (-G), the configuration and generation stages should produce a successful build. The output is seen below.
 
-![Successful Config and Generation Step](../post-pictures/cmake-series/1-setting-up-cmake/successful-generation.png)
+![Successful Configure and Generation Step(s)](../post-pictures/cmake-series/1-setting-up-cmake/successful-generation.png 'Successful Configure and Generation Step(s)')
 
 After applying the new generator flag/option, you can see that CMake automatically found the C and C++ compilers on the system via downloading MinGW. It also took the Configuration stage 1.4 seconds and the Generation stage 0.0 seconds, confirming the configuration and generation stages are complete and occur at the same time.
 
 Now finally, we have an output inside the build directory. 
 
-![Configure File Structure](../post-pictures/cmake-series/1-setting-up-cmake/configure-file-structure.png)
+![Build Director's File Structure](../post-pictures/cmake-series/1-setting-up-cmake/configure-file-structure.png 'Build Director\'s File Structure')
 
 Take a look in the "build" folder that CMake auto-created during these steps. Just take a mental note that CMake DOES produce something during the configuration and generation stages. Most of it is meaningless to us at the moment.
 
@@ -183,7 +186,7 @@ $ export
 ```
 
 You should see this somewhere in the wall of text:
-![Export Variable](../post-pictures/cmake-series/1-setting-up-cmake/export-confirmation.png)
+![Shell's Export Variable](../post-pictures/cmake-series/1-setting-up-cmake/export-confirmation.png 'Shell\'s Export Variable')
 
 Now lets configure the project again. Delete the build folder again, and run the command below. You should see it will configure and generate the files successfully.
 
@@ -200,7 +203,7 @@ However there's pitfall with this, if you exit your CLI, the export variable (CM
 
 ## Building Stage
 Lets examine the build stage!
-![CMake Building Stage](../post-diagrams/cmake-stages-red-build.png)
+![CMake Building Stage](../post-diagrams/cmake-series/1-setting-up-cmake/cmake-stages-red-build.png 'CMake\'s Building Stage')
 
 The build stage allows CMake to create build target artifacts, which include executables, libraries, and so much more. However in our case, we will only create a simple executable.
 
@@ -212,11 +215,11 @@ $ cmake --build build # build stage
 ```
 
 The CMake compiles and links our project together for us.
-![Creating an Executable](../post-pictures/cmake-series/1-setting-up-cmake/build-stage.png)
+![Creating an Executable](../post-pictures/cmake-series/1-setting-up-cmake/build-stage.png 'Creating an Executable')
 
 After the command successfully builds, now open the "build" directory on your system and file the executable.
 
-![Executable Created](../post-pictures/cmake-series/1-setting-up-cmake/created-executable.png)
+![Executable Created](../post-pictures/cmake-series/1-setting-up-cmake/created-executable.png 'Executable Created')
 
 Now run it.
 
@@ -225,7 +228,7 @@ $ cd build # move to build directory
 $ ./hello.exe
 ```
 
-![Hello-World](../post-pictures/cmake-series/1-setting-up-cmake/hello-world.png)
+![Hello-World](../post-pictures/cmake-series/1-setting-up-cmake/hello-world.png 'Executable\'s Output')
 
 Congratulations, you built your first executable using CMake.
 
@@ -276,3 +279,5 @@ We also introduced the --verbose flag to your builds. Using the verbose flag, CM
 
 ## Resources
 [Modern CMake for C++](https://www.packtpub.com/en-us/product/modern-cmake-for-c-9781805121800?pv2=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJjIjoiVVNEIiwiZXhwIjoxNzY2NTk3OTU0LCJtIjoiMTM5OTcyMjEiLCJvIjoiVVMtOTc4MTgwNTEyMTgwMC1QQVBFUkJBQ0siLCJwIjo0My45OTAwMDAwMDAwMDAwMDJ9.2t3-UUfK1gsdqTYc1dTwATUHrd3XnAzC0E0Oz7hpqqk_1ixvphXaktbPvBd0k_1S0ZFRWUq6SVi-UVUgtodEEg&utm_source=google&utm_medium=cpc&utm_campaign=23082907872&puci=CjwKCAiAu67KBhAkEiwAY0jAlQFYlbzeQ2Rojn31YAnKRNnDvEdq4en7qyc9zsA6cb6cK18WA-WtYxoCx3gQAvD_BwE&gad_source=1&gad_campaignid=23088837035&gbraid=0AAAAAqt_OJ2zJY6kfcp8FvvGFZXNtftPI&gclid=CjwKCAiAu67KBhAkEiwAY0jAlQFYlbzeQ2Rojn31YAnKRNnDvEdq4en7qyc9zsA6cb6cK18WA-WtYxoCx3gQAvD_BwE) by Rafał Świdziński
+
+[CMake General Reference](https://cmake.org/cmake/help/latest/index.html)
