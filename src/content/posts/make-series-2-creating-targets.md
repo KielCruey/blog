@@ -322,8 +322,7 @@ target_link_libraries(Tutorial PUBLIC Maths PRIVATE Scientific-Maths)
 ```
 
 ## Visualization of Dependencies
-Now suppose we are given a project with a lot of targets creating a giant web of dependencies between the executables and the targets. It might not be obvious or clear how everything fits together, however CMake contains an internal tool called Graphviz to help with documentation.
-For creating a dependency graph for better documentation is easier then ever. 
+Now suppose we are given a project with a lot of targets creating a giant web of dependencies between the executables and the targets. It might not be obvious or clear how everything fits together, however CMake contains an internal tool called [Graphviz](https://graphviz.org/) to help with documentation. For creating a dependency graph for better documentation is easier then ever. 
 
 I would suggest generate the dependency documentation inside the build directory, so you don't mixup source code and build artifacts. This idea is called [out-of-source](https://johnfarrier.com/in-source-vs-out-of-source-builds) build.
 
@@ -341,9 +340,9 @@ message("")
 set(GRAPHVIZ_CUSTOM_TARGET TRUE)
 ```
 
-As we can see, this file isn't anything similar to other CMake scripts we've created before. First off, it doesn't have a .txt file extension but a .cmake. This tells CMake it's a configuration file, and it doesn't have to follow general CMake in rules like including a "project()" command inside the file. However, we can see it's named a particular way, and it must be called "CMakeGraphVizOptions.cmake" exactly. CMake looks at the Graphviz dependency and checks how Graphviz files should be configured.
+As we can see, this file isn't anything similar to other CMake scripts we've created before. First off, it doesn't have a .txt file extension but a .cmake. This tells CMake it's a configuration file, and it doesn't have to follow general CMake rules like including a "project()" command inside the file. However, we can see it's named a particular way, and it must be called "CMakeGraphVizOptions.cmake" exactly. CMake looks at the Graphviz dependency and checks how Graphviz files should be configured.
 
-Anytime CMake see a "--graphviz" flag/option, CMake will look into the source code and run the "CMakeGraphVizOptions.cmake" script automatically. However, you call just run the script all by itself by using the "-P" like so:
+Anytime CMake see a "--graphviz" flag/option, CMake will look into the source tree and run the "CMakeGraphVizOptions.cmake" script automatically. However, you call just run the script all by itself by using the "-P" like so:
 
 ```shell title="Running a Script"
 $ cmake -P CmakeGraphVizOptions.cmake
@@ -364,8 +363,10 @@ $ dot -Tpng project_dependencies.dot -o project_dependencies.png
 
 ![Process Script Mode](../post-pictures/cmake-series/2-creating-targets/process-script-mode.PNG 'Automatic Initiation of Graphviz Script When Using the \'--graphviz\' Flag')
 
-Example of dependency graph for example program.
-![Graphviz Dependency Graph](../post-diagrams/cmake-series/2-creating-targets/project_dependencies.png 'Graphviz Dependency Graph')
+Since we used the "--graphviz" flag, the "CMakeGraphVizOptions.cmake" script also ran as we can see it in the output above! Ain't that neat?
+
+Opening up the .png file, we can see something very similar to this!
+![Graphviz Dependency Graph](../post-diagrams/cmake-series/2-creating-targets/project_dependencies.png 'Graphviz Dependency Graph for our Project Example')
 
 ## Resources
 [Modern CMake for C++](https://www.packtpub.com/en-us/product/modern-cmake-for-c-9781805121800?pv2=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJjIjoiVVNEIiwiZXhwIjoxNzY2NTk3OTU0LCJtIjoiMTM5OTcyMjEiLCJvIjoiVVMtOTc4MTgwNTEyMTgwMC1QQVBFUkJBQ0siLCJwIjo0My45OTAwMDAwMDAwMDAwMDJ9.2t3-UUfK1gsdqTYc1dTwATUHrd3XnAzC0E0Oz7hpqqk_1ixvphXaktbPvBd0k_1S0ZFRWUq6SVi-UVUgtodEEg&utm_source=google&utm_medium=cpc&utm_campaign=23082907872&puci=CjwKCAiAu67KBhAkEiwAY0jAlQFYlbzeQ2Rojn31YAnKRNnDvEdq4en7qyc9zsA6cb6cK18WA-WtYxoCx3gQAvD_BwE&gad_source=1&gad_campaignid=23088837035&gbraid=0AAAAAqt_OJ2zJY6kfcp8FvvGFZXNtftPI&gclid=CjwKCAiAu67KBhAkEiwAY0jAlQFYlbzeQ2Rojn31YAnKRNnDvEdq4en7qyc9zsA6cb6cK18WA-WtYxoCx3gQAvD_BwE) by Rafał Świdziński
