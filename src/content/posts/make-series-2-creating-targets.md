@@ -197,7 +197,7 @@ To help with property propagation understanding, following table assist what key
 |  YES   |  PUBLIC   | PRIVATE |
 |   NO   | INTERFACE |    -    |
 
-You can this of it as -- PRIVATE is for me, INTERFACE is for others, PUBLIC is for all of us.
+You can think of it as -- PRIVATE is for me, INTERFACE is for others, PUBLIC is for all of us.
 
 ## Setting/Getting Properties from Targets
 When you link targets together, their properties are consumed, shared, or given to between the visibility relationship they have. Some properties are specific to that target (for example executable or library) and depend on the target type, however we are allowed to make our own personal properties as well.
@@ -210,7 +210,7 @@ Costume properties:
 * [get_property](https://cmake.org/cmake/help/latest/command/set_property.html)
 * [set_property](https://cmake.org/cmake/help/latest/command/get_property.html)
 
-Just hinting at this topic because we will look into it later. Take notice properties can be read, write, and create your own target properties.
+Just hinting at this topic because we will look into it later. Take notice properties can be read, written, and you can create your own target properties as well.
 
 ## Linking Targets to Each Other
 Now we have an source filled artifact floating in CMake space, we now need to link that library to something -- in our case -- an executable to consume. This is when target_link_libraries command comes to the rescue. 
