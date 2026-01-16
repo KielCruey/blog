@@ -4,7 +4,7 @@ published: 2026-01-07
 draft: false
 description: 'CMake has the ability to create targets. This article shows how to create a library and link targets (a library) to an executable.'
 series: 'CMake Tutorial'
-tags: ['cmake']
+tags: ['cmake', 'graphviz']
 ---
 
 :::important
