@@ -11,11 +11,25 @@ digraph compiling {
         a [label="Assembler"]
         l [label="Linker"]   
         e [label="Executable"]
+        
+        node [shape=ellipse, style="filled", fillcolor=white]
+        lib [label="external\nlibrary"]
 
-        sc -> p [label=" .cpp"];
+        node[shape=box3d, style="filled", fillcolor=white]
+        ppe [label="stop if pre-processor error"]
+        ce [label="stop if syntax error"]
+        le [label="stop if linker error"]
+
+        edge [arrowhead=normal, arrowtail=dot]
+        sc -> p [label=" .c .h .cpp .hpp"];
         p -> c [label=" .i"];
         c -> a [label=" .s"];
         a -> l [label=" .o"];
         l -> e [label=" ./<file-name>\n.exe\n.lib\n.a\n.so\n.dll"];
+        lib -> l
+
+        p -> ppe [style=dashed]
+        c -> ce [style=dashed]
+        l -> le [style=dashed]
     }
 }
