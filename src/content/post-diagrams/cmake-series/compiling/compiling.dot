@@ -4,6 +4,7 @@ digraph compiling {
         labelloc = t; // Places the cluster label at the top
         style = filled;
         color = lightgrey;
+
         node [shape=box, style="filled", fillcolor=white]
         sc [label="Source Code"]
         p [label="Preprocessor"]
@@ -26,10 +27,10 @@ digraph compiling {
         c -> a [label=" .s"];
         a -> l [label=" .o"];
         l -> e [label=" ./<file-name>\n.exe\n.lib\n.a\n.so\n.dll"];
-        lib -> l
-
-        p -> ppe [style=dashed]
-        c -> ce [style=dashed]
-        l -> le [style=dashed]
+        
+        p -> ppe [style=dashed, color=red]
+        c -> ce [style=dashed, color=red]
+        l -> le [style=dashed, color=red]
+        lib -> l [label="[optional]", style=dashed, color=green]
     }
 }
