@@ -2,7 +2,8 @@ digraph compiling {
     splines=line
     splines=false
     graph [label=<<u>C++ Compiling Process</u>> fontsize="28" labelloc="t"]
-    node [shape=box, style="filled", fillcolor=white]
+    node [shape=box, style="filled", fillcolor=white fontsize=18]
+    edge [fontsize=18]
 
     sc [label="Source Code"]
 
@@ -31,7 +32,7 @@ digraph compiling {
         rankdir=RL
         rank=same
         
-        lib [label="library"]
+        lib [label="external\n library"]
         l [label="Linker"]  
         le [label="linker error"]
 
