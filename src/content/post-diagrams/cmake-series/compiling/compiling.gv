@@ -1,36 +1,49 @@
 digraph compiling {
-    subgraph g {
-        label="C++ Compiling Process"
-        labelloc = t; // Places the cluster label at the top
-        style = filled;
-        color = lightgrey;
+    splines=line
+    splines=false
+    graph [label=<<u>C++ Compiling Process</u>> fontsize="28" labelloc="t"]
+    node [shape=box, style="filled", fillcolor=white]
 
-        node [shape=box, style="filled", fillcolor=white]
-        sc [label="Source Code"]
+    sc [label="Source Code"]
+
+    subgraph preprocessor {
+        rankdir=RL
+        rank=same
         p [label="Preprocessor"]
-        c [label="Compiler"]
-        a [label="Assembler"]
-        l [label="Linker"]   
-        e [label="Executable"]
-        
-        node [shape=ellipse, style="filled", fillcolor=white]
-        lib [label="external\nlibrary"]
+        ppe [label="pre-processor error"]
 
-        node[shape=box3d, style="filled", fillcolor=white]
-        ppe [label="stop if pre-processor error"]
-        ce [label="stop if syntax error"]
-        le [label="stop if linker error"]
-
-        edge [arrowhead=normal, arrowtail=dot]
-        sc -> p [label=" .c .h .cpp .hpp"];
-        p -> c [label=" .i"];
-        c -> a [label=" .s"];
-        a -> l [label=" .o"];
-        l -> e [label=" ./<file-name>\n.exe\n.lib\n.a\n.so\n.dll"];
-        
-        p -> ppe [style=dashed, color=red]
-        c -> ce [style=dashed, color=red]
-        l -> le [style=dashed, color=red]
-        lib -> l [label="[optional]", style=dashed, color=green]
+        p:e -> ppe:w [label="conditional" fontcolor=red color=red]
     }
+    
+    subgraph compiler {
+        rankdir=RL
+        rank=same
+
+        c [label="Compiler"]
+        ce [label="syntax error"]
+
+        c:e -> ce:w [label="conditional" fontcolor=red color=red]
+    }
+
+    a [label="Assembler"]
+
+    subgraph linker {
+        rankdir=RL
+        rank=same
+        
+        lib [label="library"]
+        l [label="Linker"]  
+        le [label="linker error"]
+
+        lib:e -> l:w [label="optional" fontcolor=green color=green];
+        l:e -> le:w [label="conditional" fontcolor=red color=red]
+    }
+
+    e [label="Executable"]
+
+    sc -> p [label=" .c\n .h\n .cpp\n .hpp"];
+    p -> c [label=" .i"];
+    c -> a [label=" .s"];
+    a -> l [label=" .o"];
+    l -> e [label=" ./<file-name>\n .exe\n .lib\n .a\n .so\n .dll"];
 }
