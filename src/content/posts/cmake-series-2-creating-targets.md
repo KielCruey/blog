@@ -17,8 +17,8 @@ In this article, we will look into more development topics of CMake and examine 
 Then we will look into a real example with CMake using a command line program.
 
 # Article's Scope
-We will look into the some key concepts:
-* dig deeper into the the three basic commands a ***CMakeLists.txt*** must contain by looking into the documentation.
+We will look into some key concepts:
+* dig deeper into the three basic commands a ***CMakeLists.txt*** must contain by looking into the documentation.
 * creating targets (a library) from an executable to consume and use it in our program
 * how different scopes (public, private, and interface) keywords effect the library during the build
 * how to link the library to the main program
@@ -48,7 +48,7 @@ CMake conveniently documentation gives us the ability to look up what these comm
 
 When reading the example commands, notice the punctuation and syntax of the command. The punctuation marks between the parentheses ("()") provides all the inputs needed but some of them can be optional. For example, anything that's capitalize must be written as-is, because it sets some CMake variables internally. Other than the capitalization, the less than and greater than ("<>") symbols requires a user input value to be as a parameter. Anything with square brackets ("[]") is considered optional with everything in between the brackets to be written as as-is and replace any "<>" variables, of course.
 
-Lets take a look at specifically to the three basic CMake command's documentation.
+Let's take a look at specifically to the three basic CMake command's documentation.
 
 ### cmake_minimum_required()
 The example commands from the cmake_minimum_required [documentation](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html): 
@@ -58,15 +58,15 @@ $ cmake_minimum_required(VERSION <min>[...<policy_max>] [FATAL_ERROR])
 
 As we can see VERSION keyword is required with an input (<min\>) and everything else between the square brackets as optional. Just like previously stated, inside the square bracket must be exactly followed. With the particular option <policy_max>, gives us a range for the minimum and maximum value for the CMake version or it will throw an error.
 
-Lets give an example.
+Let's give an example.
 
 To figure out the version of the current CMake you're one, open up your favorite command line and type in "cmake --version". For example, my version happens to be version 4.2. 
 
 ![CMake Version](../post-pictures/cmake-series/2-creating-targets/cmake-version.png 'CMake Version Command Output') 
 
-Lets add the FATAL_ERROR option as well, so if your CMake's version is less than 4.3, CMake will stop the configuration/generation/build stage and thrown an error to the command line. 
+Let's add the FATAL_ERROR option as well, so if your CMake's version is less than 4.3, CMake will stop the configuration/generation/build stage and thrown an error to the command line. 
 
-To illustrate this error, lets set up a file structure something like this, exactly like [article #1](https://kcruey.com/posts/cmake-series-1-setting-up-cmake/).
+To illustrate this error, let's set up a file structure something like this, exactly like [article #1](https://kcruey.com/posts/cmake-series-1-setting-up-cmake/).
 
 ![Error File Structure](../post-pictures/cmake-series/2-creating-targets/cmake-min-required-error-file-structure.png 'CMake Error -- Project\'s File Structure')
 
@@ -89,7 +89,7 @@ int main()
 }
 ```
 
-Now, lets put the command as follows:
+Now, let's put the command as follows:
 
 ```shell title="CMake Version Error"
 $ cmake -G "MinGW Makefiles" -B build -S .
@@ -115,9 +115,9 @@ $ project(<PROJECT-NAME>
         [HOMEPAGE_URL <url-string>]
         [LANGUAGES <language-name>...])
 ```
-As we can see, there's two different forms of the acceptable project() commands. Option #1 is more compact and less complex than then option #2, and depending on the complexity of the CMake script, adding all of the optional values might be needed. However for this example, that isn't necessary, since we don't need to add more details to the project. 
+As we can see, there two different forms of the acceptable project() commands. Option #1 is more compact and less complex than then option #2, and depending on the complexity of the CMake script, adding all the optional values might be needed. However for this example, that isn't necessary, since we don't need to add more details to the project. 
 
-We will use the simple version, and in the documentation, add the "CXX" as the language to add more detail to our project. Adding this detail acknowledges CMake to look for compilers and/or toolchains for the C++ language. Once again, this is optional but it's good to have these details in the project.
+We will use the simple version, and in the documentation, add the "CXX" as the language to add more detail to our project. Adding this detail acknowledges CMake to look for compilers and/or tool-chains for the C++ language. Once again, this is optional, but it's good to have these details in the project.
 
 ### add_executable()
 The example commands from the add_executable [documentation](https://cmake.org/cmake/help/latest/command/add_executable.html#command:add_executable): 
@@ -134,10 +134,10 @@ $ add_executable(<name> ALIAS <target>) # alias version
 ```
 
 There are multiple versions used for different types of executables, however we aren't interested in option #2 or #3. However, lets introduce a brief explanation of and IMPORTED and ALIAS keywords: 
-* IMPORTED allows to connect an external executables, like another development tools, into your project
+* IMPORTED allows to connect external executables, like another development tools, into your project
 * ALIAS allows to rename any executable -- simply gives it a new name
 
-Now back to option #1, the add executable commands makes a target, and the name of the target is set by the <name\> value. The <sources\> input adds any .cpp files initially to the target, and add as many files as you want. However we will see creating a library simplifies a massive list of .cpp files. 
+Now back to option #1, the add executable commands makes a target, and the name of the target is set by the <name\> value. The <sources\> input adds any .cpp files initially to the target, and add as many files as you want. However, we will see creating a library simplifies a massive list of .cpp files. 
 
 ```c++ title="executable-forms/CMakeLists.txt"
 # example #1 -- empty executable
@@ -156,12 +156,12 @@ Some of the most common commands creating CMake targets and generally, they have
 * [add_executable](https://cmake.org/cmake/help/latest/command/add_executable.html)
 * [add_library](https://cmake.org/cmake/help/latest/command/add_library.html)
 
-When you make a target, it gets named, and CMake understands to create an object or, in CMake verbiage, an artifacts. CMake refers to artifacts in a more general term than libraries, headers, or objects to name a few. 
+When you make a target, it gets named, and CMake understands to create an object or, in CMake verbiage, an artifact. CMake refers to artifacts in a more general term than libraries, headers, or objects to name a few. 
 
 The add_executable and add_library commands create a target, which is a key concept in CMake development.
 
 ### Adding Files to Targets
-However, just because you make a target doesn't mean anything is associated with it -- assuming you didn't use the <sources\> option in the add_executable command. Think of targets as an empty vessel or shell, and  "target_source" (and similar commands) weave together translation units (cpp files) into the artifact(s).
+However, just because you make a target doesn't mean anything is associated with it -- assuming you didn't use the <sources\> option in the add_executable command. Think of targets as an empty vessel or shell, and "target_source" (and similar commands) weave together translation units (cpp files) into the artifact(s).
 
 Some commands add translation units (cpp files) to targets and [target_sources](https://cmake.org/cmake/help/latest/command/target_sources.html) is one of them.
 
@@ -242,7 +242,7 @@ Name as many targets as you want in after target flag/option, and CMake will bui
 :::
 
 ## Example Code
-We've seen how to create targets, adding source files to targets, looked at CMake scoping of targets, and linking targets to each other. That's all well and great, but lets see a real example and how all the commands interact with each other. I want to emphasize on the ***CMakeLists.txt*** and not the source code itself, however feel free to examine all the code in the repository.
+We've seen how to create targets, adding source files to targets, looked at CMake scoping of targets, and linking targets to each other. That's all well and great, but let's see a real example and how all the commands interact with each other. I want to emphasize on the ***CMakeLists.txt*** and not the source code itself, however feel free to examine all the code in the repository.
 
 :::important
 To find all the code, go to 2-creating-and-linking-targets/project-example directory in this [repository](https://github.com/KielCruey/cmake-tutorial)
@@ -322,7 +322,7 @@ target_link_libraries(Tutorial PUBLIC Maths PRIVATE Scientific-Maths)
 ```
 
 ## Visualization of Dependencies
-Now suppose we are given a project with a lot of targets creating a giant web of dependencies between the executables and the targets. It might not be obvious or clear how everything fits together, however CMake contains an internal tool called [Graphviz](https://graphviz.org/) to help with documentation. For creating a dependency graph for better documentation is easier then ever. 
+Now suppose we are given a project with a lot of targets creating a giant web of dependencies between the executables and the targets. It might not be obvious or clear how everything fits together, however CMake contains an internal tool called [Graphviz](https://graphviz.org/) to help with documentation. For creating a dependency graph for better documentation is easier than ever. 
 
 I would suggest generate the dependency documentation inside the build directory, so you don't mixup source code and build artifacts. This idea is called [out-of-source](https://johnfarrier.com/in-source-vs-out-of-source-builds) build.
 

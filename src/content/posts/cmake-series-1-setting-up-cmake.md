@@ -65,7 +65,7 @@ Before we get into the details of CMake, CMake works by identifying a file calle
 
 Always put a ***CMakeLists.txt*** at the base of your directory and this particular ***CMakeLists.txt*** is referred as the root ***CMakeLists.txt***. This is by far the most important ***CMakeLists.txt*** in your project. Think of it like the base of a tree, everything else grows from the root.
 
-However if your project is getting complicated, it isn't uncommon to add supplementary ***CMakeLists.txt*** in other subdirectories. We will eventually investigate into this paradigm later in the series. It helps your CMake builds look cleaner and minimizes a monolithic root ***CMakeLists.txt*** and eventually minimize debugging efforts.
+However, if your project is getting complicated, it isn't uncommon to add supplementary ***CMakeLists.txt*** in other subdirectories. We will eventually investigate into this paradigm later in the series. It helps your CMake builds look cleaner and minimizes a monolithic root ***CMakeLists.txt*** and eventually minimize debugging efforts.
 
 ## How Does CMake Produce an Executable?
 Remember, CMake is a build generator, which means it calls other native tools on your computer to create an executable. That's why we need to install dependencies from previous sections above. CMake must acknowledge the other tools on your system, or CMake will throw an error.
@@ -104,7 +104,7 @@ For CMakeLists.txt, these three commands -- cmake_minimum_required, project, and
 Once completed, your folder should look something like this: 
 ![tutorial directory](../post-pictures/cmake-series/1-setting-up-cmake/setting-up-cmake-1.png '\'hello-world\' File Structure')
 
-Finally with everything in place, lets get configuring!
+Finally with everything in place, let's get configuring!
 
 ## Configuration Stage
 Lets examine the configuration stage!
@@ -142,7 +142,7 @@ $ cmake --help
 Now scroll down all the way to the bottom, the command will list out all the possible generators. Pick one that best suits you depending on your operating system. However we did install MinGW. I would suggest "MinGW Makefiles".
 
 :::note
-You will see a "*" on the left side of the generator's name when scrolling down the list. That's the default value and we need to change it.
+You will see a "*" on the left side of the generator's name when scrolling down the list. That's the default value, and we need to change it.
 
 Currently, my setup was generating for "NMake Makefiles", so that's why we saw the error above, since we didn't have NMake Makefiles dependencies on our machine.
 :::
@@ -257,7 +257,7 @@ $ ./hello.exe
 ```
 
 ## Building in Verbose Mode
-To help with debugging CMake scripts, there's a CMake mode called "verbose mode". CMake will display all the build information during the build stage, and switching into this mode can help with debugging issues. If you happened to run into an unknown issues, try verbose during your builds and it might catch something obvious.
+To help with debugging CMake scripts, there's a CMake mode called "verbose mode". CMake will display all the build information during the build stage, and switching into this mode can help with debugging issues. If you happened to run into an unknown issues, try verbose during your builds, and it might catch something obvious.
 
 Try it now, and try it in different build configurations:
 ```shell title="Verbose Mode"
@@ -267,7 +267,7 @@ $ cmake --build build -- config Release --verbose
 Just keep this in mind, and it can be powerful.
 
 ## Summary
-In this article, we examined some of the overall features of what CMake can do. We downloaded some dependencies onto you machine for CMake development. This includes downloading your favorite package manager. 
+In this article, we examined some of the overall features of what CMake can do. We downloaded some dependencies onto your machine for CMake development. This includes downloading your favorite package manager. 
 
 Then we learned about how ***CMakeLists.txt*** are files specifically used for CMake development. Remember, you have to name it exactly "***CMakeLists.txt***" or your machine won't recognize it.
 
