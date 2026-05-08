@@ -1,0 +1,23 @@
+digraph g {
+
+    // nodes
+    start [label="Start", shape=doublecircle];
+    elements [label="Any Elements \n in Collection?", shape=diamond];
+    init [label="Initialize Local Variable \n to First Element", shape=box];
+    execute [label="Loop Execution", shape=box];
+    subgraph {
+        rank=same
+        remainingElement [label="Remaining Elements \n in Collection?", shape=diamond];
+        nextElement [label="Initialize Local Variable \n to Next Element", shape=box]
+    }
+    stop [label="Stop", shape=doublecircle]
+
+    // arrows
+    start -> elements
+    elements -> init
+    init -> execute
+    execute ->remainingElement
+    remainingElement -> stop [label="False"]
+    nextElement -> execute:e
+    remainingElement:e -> nextElement:w [label="True"]
+}

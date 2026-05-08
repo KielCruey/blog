@@ -31,10 +31,9 @@ There are multiple ways of initialization variables and classes, here are just a
 
 ```c++ title="Types of Initialization"
 int x; // default initialization
-int x = 10; // copy initialization
+int x = 10; // value/direct initialization
 int x = &y; // copy initialization
 int x[3] = { 4,5,6 } // aggregate initialization
-int x = 10; // value/direct initialization
 int x(7); // direct initialization
 int x{}; // uniform initialization
 int x{10}; // uniform initialization 
