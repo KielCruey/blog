@@ -1,0 +1,13 @@
+digraph g {
+    // nodes
+    start [label="Start", shape=doublecircle];
+    test [label="Test Condition", shape=diamond];
+    loop [label="Loop Execution", shape=box];
+    stop [label="Stop", shape=doublecircle]
+
+    // arrows
+    start -> test
+    test -> loop[label="True"] 
+    loop:w -> test:w 
+    test:e -> stop[label="False" ]
+}
