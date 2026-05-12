@@ -8,7 +8,7 @@ tags: ['cpp', 'c++11']
 ---
 
 # C++ Tip Series
-For all the code in this series, the repository is located [here](https://github.com/KielCruey/cpp-tips) in the 'cpp-tips' directory.
+For all the code in this series, the repository is located [here](https://github.com/KielCruey/cpp-tips) in the 'cpp-tips' directory. Look for the directory with the same name as the article's title.
 
 ## What is Uniform Initialization?
 Uniform Initialization is a new feature in C++11 that allows a different syntax to initializing variables and primitive types by using the braces {} instead of the parenthesis () (GeeksforGeeks, 2023). However, it isn't just another trivial way to initialize, it also has the mechanism to enforce safety checks.
@@ -24,7 +24,7 @@ Throughout C/C++'s history, initialization has been categorized into seven diffe
 * Aggregate Initialization ('= {args}')
 * Direct Initialization (argument list in parentheses)
 * Value Initialization (empty parents)
-* List Initialization ('{args}' is direct-list-init, '= {args}' is copy-list-init)
+* List Initialization ('{args}' in direct-list-init, '= {args}' in copy-list-init)
 * Uniform Initialization ('{value}', {})
 
 There are multiple ways of initialization variables and classes, here are just a few examples:

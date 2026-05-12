@@ -1,14 +1,14 @@
 ---
-title: 'For Loops'
+title: 'C++ Loops'
 published: 2026-5-8
 draft: false
-description: 'Tips for C++: Looking into for loops specifically for-each/range-based loops.'
+description: 'Tips for C++: Looking into all the C++ loops, but emphasizing the for-each/range-based loops which is a new feature in c++11.'
 series: 'Cpp Tips'
 tags: ['cpp', 'c++11']
 ---
 
 # C++ Tip Series
-For all the code in this series, the repository is located [here](https://github.com/KielCruey/cpp-tips) in the 'cpp-tips' directory.
+For all the code in this series, the repository is located [here](https://github.com/KielCruey/cpp-tips) in the 'cpp-tips' directory. Look for the directory with the same name as the article's title.
 
 ## C++ Loops
 For most mid-level to high-level programming languages have some sort of looping concept, which include languages like Python, C/C++, and Java to name a few. Loop have the ability to control how your program does something -- like manipulating data -- should be executed in a iterative or consecutive fashion. The execution of these loops are monitored by a condition, and will continue that execution until it isn't satisfied any more (Wikipedia contributors, 2026).
@@ -21,6 +21,7 @@ In C++, there are four different types of loops:
 
 There's also an intermediate loop using iterators that acts like the for-each/range-based loop. By looking at the iterator based loop, it helps break down how the for-each/range-based loop is implemented. 
 
+## C++ Loop's Syntax
 ``` c++ title="Loop Logic (GeeksforGeeks, 2026)"
 // standard for loop
 for( <initialization>; <condition>; <expression statement>) {
@@ -43,7 +44,7 @@ do {
 } while(<condition>);
 ```
 
-We will see in some examples that all the loops outputs, however how the execution and the process of how they do it is different.
+We will see in followings examples that all the loops outputs are exactly the same, however how the execution and the process of how they do it is different. Depending on your needs, use the correct loop logic necessary.
 
 ### While Loop
 For the while loop, here the logic and structure how it works.
