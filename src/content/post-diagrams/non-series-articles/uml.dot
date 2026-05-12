@@ -31,9 +31,9 @@ digraph UML_Class_diagram {
 			<tr> <td>
 				<table border="0" cellborder="0" cellspacing="0" >
 					<tr> <td align="left" >+ property</td> </tr>
-					<tr> <td port="ss1" align="left" >- Subsystem 1</td> </tr>
-					<tr> <td port="ss2" align="left" >- Subsystem 2</td> </tr>
-					<tr> <td port="ss3" align="left" >- Subsystem 3</td> </tr>
+					<tr> <td port="ss1" align="left" >- Subsystem 1   </td> </tr>
+					<tr> <td port="ss2" align="left" >- Subsystem 2   </td> </tr>
+					<tr> <td port="ss3" align="left" >- Subsystem 3   </td> </tr>
 					<tr> <td align="left">...</td> </tr>
 				</table>
 			</td> </tr>
@@ -47,7 +47,7 @@ digraph UML_Class_diagram {
 	Subsystem_1 [
 		shape=plain
 		label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
-			<tr> <td> <b>Subsystem 1</b> </td> </tr>
+			<tr> <td> <b>Subsystem 1  </b> </td> </tr>
 			<tr> <td>
 				<table border="0" cellborder="0" cellspacing="0" >
 					<tr> <td align="left">+ property</td> </tr>
@@ -61,10 +61,11 @@ digraph UML_Class_diagram {
 			</td> </tr>
 		</table>>
 	]
+
 	Subsystem_2 [
 		shape=plain
 		label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
-			<tr> <td> <b>Subsystem 2</b> </td> </tr>
+			<tr> <td> <b>Subsystem 2  </b> </td> </tr>
 			<tr> <td>
 				<table align="left" border="0" cellborder="0" cellspacing="0" >
 					<tr> <td align="left">+ property</td> </tr>
@@ -78,10 +79,11 @@ digraph UML_Class_diagram {
 			</td> </tr>
 		</table>>
 	]
+	
 	Subsystem_3 [
 		shape=plain
 		label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4">
-			<tr> <td> <b>Subsystem 3</b> </td> </tr>
+			<tr> <td> <b>Subsystem 3  </b> </td> </tr>
 			<tr> <td>
 				<table border="0" cellborder="0" cellspacing="0" >
 					<tr> <td align="left">+ property</td> </tr>
@@ -104,7 +106,7 @@ digraph UML_Class_diagram {
 	Subsystem_3:r1 -> "Shared resource"
 	"Shared resource" [
 		label = <{
-			<b>Shared resource</b>
+			<b>Shared Resource   </b>
 			|
 				+ property<br align="left"/>
 				...<br align="left"/>

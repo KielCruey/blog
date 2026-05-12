@@ -3,7 +3,6 @@ title: 'Intro to Unified Modeling Language (UML)'
 published: 2026-5-11
 draft: false
 description: 'Looking at UML and how to use it via Graphviz. '
-series: 'Cpp Tips'
 tags: ['uml', 'graphviz']
 ---
 
