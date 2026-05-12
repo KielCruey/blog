@@ -1,6 +1,6 @@
 ---
 title: 'C++ Loops'
-published: 2026-5-8
+published: 2026-5-10
 draft: false
 description: 'Tips for C++: Looking into all the C++ loops, but emphasizing the for-each/range-based loops which is a new feature in c++11.'
 series: 'Cpp Tips'
@@ -21,7 +21,7 @@ In C++, there are four different types of loops:
 
 There's also an intermediate loop using iterators that acts like the for-each/range-based loop. By looking at the iterator based loop, it helps break down how the for-each/range-based loop is implemented. 
 
-## C++ Loop's Syntax
+## C++ Loops' Syntax
 ``` c++ title="Loop Logic (GeeksforGeeks, 2026)"
 // standard for loop
 for( <initialization>; <condition>; <expression statement>) {
