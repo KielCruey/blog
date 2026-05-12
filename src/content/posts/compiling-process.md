@@ -19,7 +19,7 @@ Okay, I will stop with the analogies. :smile:
 ## Compiling Stage Overview
 ![compiling-process](../post-diagrams/compiling-process/compiling.png 'Figure 1: Compiling Stages')
 
-Let's refer to **Figure 1** were this is the process for C/C++ or generally compiled languages.
+Let's refer to **Figure 1** were this is the pr=cess for C/C++ or generally compiled languages.
 
 the "compilation stage" is different in C/C++, since C/C++ is a compiled language. 
 For example other interpreted languages, like Python don't have the "assembler" step. 
