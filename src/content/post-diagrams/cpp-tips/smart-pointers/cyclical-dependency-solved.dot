@@ -1,0 +1,9 @@
+digraph g {
+    compound=true // Essential for cluster-to-cluster arrows
+
+    husband [label="Husband", shape=box];
+    wife [label="Wife", shape=box];
+
+    husband:w -> wife:w [label=strong]
+    wife:e -> husband:e [label=weak, fontcolor=red, color=red]
+}

@@ -1,0 +1,24 @@
+digraph g {
+    compound=true // Essential for cluster-to-cluster arrows
+
+    subgraph cluster_g0{
+        label="No Dangling Pointers";
+        pointer2 [label="pointer2", shape=box];
+        pointer1 [label="pointer1", shape=box];
+        
+        object1 [label=" object1", shape=circle];
+
+        pointer1 -> object1
+        pointer2 -> object1
+    }
+
+    subgraph cluster_g1{
+        label="A Dangling Pointer";
+        dangling [label="pointer2 \n (dangling pointer)", shape=box];
+        pointer3 [label="pointer1", shape=box];
+        deletedObject [label="deleted\n object1", shape=circle];
+       
+        pointer3 -> deletedObject [color=red]
+        dangling -> deletedObject
+    }
+}

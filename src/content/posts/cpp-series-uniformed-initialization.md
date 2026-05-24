@@ -62,7 +62,7 @@ int main() {
 }
 ```
 
-![Type Narrowing](../post-pictures/cpp-tips/uniform-initialization.PNG)
+![Type Narrowing](../post-pictures/cpp-tips/uniform-initialization/uniform-initialization.PNG 'Type Narrowing')
 
 ### Guarantees Initialization
 Unlike any other initialization, uniformed initialization will promise a zero or NULL ("0") if nothing is declared.
@@ -79,7 +79,8 @@ int main() {
     return 0;
 }
 ```
-![](../post-pictures/cpp-tips/guarantees-initialization-debugging.PNG 'Debugging Results')
+
+![Debugging Results](../post-pictures/cpp-tips/uniform-initialization/guarantees-initialization-debugging.PNG 'Debugging Results')
 
 As we can see from the "debugging results" figure, variable "a" happens to be initialized with an integer value of "387". C++ doesn't promise any particular value, so it could be any integer value. Additionally, variable "b" wasn't created at all, which is an issue related to C++ safety. Using the uniform initialization prevents these errors from occurring.
 
