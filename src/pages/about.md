@@ -16,10 +16,13 @@ My career interests are:
 * embedded systems
 
 My technical interest are:
+* software architecture
+* c++ templates
 * digital signal processing (dsp)
 * multithreading
 * build systems
 * linux
+* object-oriented design and analysis
 
 ## Contact Me
 If inquires about an official résumé, click the mail icon at the bottom to email me directly.
