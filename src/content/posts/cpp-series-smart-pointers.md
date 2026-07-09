@@ -97,7 +97,7 @@ Because the compiler doesn't catch this logical issue and effectively causes the
 A dangling pointer occurs when a pointer references a memory address that has been deleted by another pointer. 
 
 Let's illustrate this example:
-![Dangling Pointer](..\post-diagrams\cpp-tips\smart-pointers\dangling-pointer.png 'Dangling Pointer -- Red Arrow means Deleted Reference')
+![Dangling Pointer](../post-diagrams/cpp-tips/smart-pointers/dangling-pointer.png 'Dangling Pointer -- Red Arrow means Deleted Reference')
 
 As we can see in the figure above, we have "pointer1" and "pointer2" pointing to "object1" in the "No Dangling Pointer" subgraph. Let's suppose that "pointer1" deletes the memory address its pointer to. In the "A Dangling Pointer" subgraph, that action causes "pointer2" to become a dangling pointer. It references something that doesn't exist or has a "dangling" reference.
 
@@ -381,7 +381,7 @@ int main() {
 #### Weak Pointer Example -- Eliminating Cyclical Dependencies
 As seen in the diagram below, follow the strong pointer (black arrow) until it reaches the end node. When you have strong pointers pointing to each other, they go around referencing themselves and continuing to find an ending. However you see there isn't one.
 
-![cyclical-dependency-problem](..\post-diagrams\cpp-tips\smart-pointers\cyclical-dependency-problem.png 'Cyclical Dependency Problem')
+![cyclical-dependency-problem](../post-diagrams/cpp-tips/smart-pointers/cyclical-dependency-problem.png 'Cyclical Dependency Problem')
 
 However in the solution case -- see the diagram below -- using a weak pointer breaks the cycle. Think of it that the red "weak" pointer is imaginary to the system, but you the programmer knows it's there. When you start at husband object, it stops at the wife object breaking the cycle.
 
