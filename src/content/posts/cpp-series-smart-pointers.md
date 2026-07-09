@@ -97,7 +97,7 @@ Because the compiler doesn't catch this logical issue and effectively causes the
 A dangling pointer occurs when a pointer references a memory address that has been deleted by another pointer. 
 
 Let's illustrate this example:
-![Dangling Pointer](..\post-diagrams\cpp-tips\smart-pointers\dangling-pointer.png 'Dangling Pointer -- Red Arrow means Deleted Reference')
+![Dangling Pointer](../post-diagrams/cpp-tips/smart-pointers/dangling-pointer.png 'Dangling Pointer -- Red Arrow means Deleted Reference')
 
 As we can see in the figure above, we have "pointer1" and "pointer2" pointing to "object1" in the "No Dangling Pointer" subgraph. Let's suppose that "pointer1" deletes the memory address its pointer to. In the "A Dangling Pointer" subgraph, that action causes "pointer2" to become a dangling pointer. It references something that doesn't exist or has a "dangling" reference.
 
