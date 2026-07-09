@@ -381,7 +381,7 @@ int main() {
 #### Weak Pointer Example -- Eliminating Cyclical Dependencies
 As seen in the diagram below, follow the strong pointer (black arrow) until it reaches the end node. When you have strong pointers pointing to each other, they go around referencing themselves and continuing to find an ending. However you see there isn't one.
 
-![cyclical-dependency-problem](..\post-diagrams\cpp-tips\smart-pointers\cyclical-dependency-problem.png 'Cyclical Dependency Problem')
+![cyclical-dependency-problem](../post-diagrams/cpp-tips/smart-pointers/cyclical-dependency-problem.png 'Cyclical Dependency Problem')
 
 However in the solution case -- see the diagram below -- using a weak pointer breaks the cycle. Think of it that the red "weak" pointer is imaginary to the system, but you the programmer knows it's there. When you start at husband object, it stops at the wife object breaking the cycle.
 
