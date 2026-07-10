@@ -7,9 +7,9 @@ tags: ['compiling']
 ---
 
 Compiling a program can be seen a simple process that, to most people, something magically happens on your computer.
-It appears to be an easy process that doesn't take much thought, because look at it automatically happens before your eyes.
-Just put your source code in your favorite IDE and press build.
-Boom, an executable, dynamic/static library gets created, or some other build target.
+It appears to be an easy process that doesn't take much thought, since it looks automatically happens and something happens before your eyes.
+Just put your source code in your favorite IDE and press build, or created a build script and run it.
+Boom, an executable, dynamic/static library gets created, or some other build artifact gets created.
 Wash your hands and you're done.
 
 Let's take a look what really happens under the hood of the compilation car and take a few hot laps around the compiling track.
