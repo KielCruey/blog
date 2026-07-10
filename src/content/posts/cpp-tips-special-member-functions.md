@@ -17,11 +17,13 @@ For all the code in this series, the repository is located [here](https://github
 * copy constructor
 * copy assignment operator
 
-in c++11, the following special member functions were added:
+in ``c++11``, the following special member functions were added:
 * move constructor
 * move assignment operator
 
 ## Special Member Functions
+functions that the compiler automatically generate and define 
+
 
 ## Rule of Zero
 don't define any of the special member functions
@@ -54,3 +56,6 @@ don't define any of the special member functions
 * move constructor
 * move assignment operator
 * friend swap
+
+# Resources
+C++: rule of 0, 3, 5, and 6. (n.d.). Gist. https://gist.github.com/MangaD/c00f23c66156fec4922c4d6ea6da234b
