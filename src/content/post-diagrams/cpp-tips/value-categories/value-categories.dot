@@ -1,0 +1,17 @@
+digraph g {
+    compound=true // Essential for cluster-to-cluster arrows
+
+    expression [label="expression", shape=oval];
+    glvalue [label="glvalue", shape=oval];
+    rvalue [label="rvalue", shape=oval]; 
+    lvalue [label="lvalue", shape=oval];
+    xvalue [label="xvalue", shape=oval];
+    prvalue [label="prvalue", shape=oval];
+
+    expression -> glvalue;
+    expression -> rvalue;
+    glvalue -> lvalue;
+    glvalue -> xvalue;
+    rvalue -> xvalue;
+    rvalue -> prvalue
+}

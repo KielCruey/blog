@@ -1,0 +1,1 @@
+{"rule":"ABLE_TO_PASSIVE","sentence":"^\\QC++ Value Categories\nWhen you have a C++ expression, which is a sequence of non-trivial values and operators, that expression is able to be evaluated.\\E$"}
