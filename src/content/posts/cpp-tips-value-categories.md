@@ -27,11 +27,10 @@ In the figure above, C++ breaks down all the value categories into these propert
 * An <u>rvalue</u> (historically, could appear on the right-hand side of an assignment expression) is an xvalue, a temporary object or subobject thereof, or a value that is not associated with an object. If it's not a lvalue, it's a rvalue.
 * A <u>prvalue</u> (“pure” rvalue) is an rvalue that is not an xvalue.
 
-
 ## Brief History of Value Categories
-Since the being of C and, effectively, also the beginning of C++, lvalues existed in the conception of the C++ core language. [CPL](https://en.wikipedia.org/wiki/CPL_(programming_language)), which is an early ancestor of C, used the idea and verbiage of "left-hand mode" or lvalue and "right-hand mode" or rvalue. Historically, lvalue or rvalue been associated with the left or right side of the ``=`` side in a C++ expression.
+Since the being of C and, effectively, also the beginning of C++, lvalues existed in the conception of the C++ core language. [CPL](https://en.wikipedia.org/wiki/CPL_(programming_language)), which is an early ancestor of [C](https://en.wikipedia.org/wiki/C_(programming_language)), used the idea and verbiage of "left-hand mode" or lvalue and "right-hand mode" or rvalue. Historically, lvalue or rvalue been associated with the left or right side of the ``=`` side in a C++ expression.
 
-In ``c++98``, rvalues became a commonly known category in C++.
+In ``c++98``, lvalues and rvalues became a commonly known category in C++.
 
 lvalues has a location in memory, and a rvalue is a temporary value that will lose it's life-time scope.
 
